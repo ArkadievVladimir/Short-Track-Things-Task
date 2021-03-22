@@ -1,0 +1,189 @@
+@import './common/color.scss';
+@import './common/variable.scss';
+@import './common/mixin.scss';
+$control-buttons-size: 35px;
+$control-buttons-small-size: 25px;
+$add-button-size: 60px;
+
+.header {
+  position: relative;
+  width: 100%;
+  height: $header-height;
+  background-image: url('../img/mountains.jpg');
+  background-position: center;
+  background-size: cover;
+  border-radius: 15px;
+  color: $thing-background-color;
+  padding-top: 25px;
+  padding-left: 35px;
+  box-sizing: border-box;
+  h2 {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 4rem;
+    line-height: 60px;
+    text-shadow: $header-text-shadow;
+    user-select: none;
+    span {
+      display: block;
+    }
+  }
+  .things-counter {
+    font-size: 0.9rem;
+    margin-left: 13px;
+    text-shadow: $header-text-shadow,
+                 $header-text-shadow,
+                 $header-text-shadow;
+    letter-spacing: 4px;
+    opacity: 0.8;
+  }
+}
+
+.control-buttons {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  height: $control-buttons-size;
+  .random-button {
+    @include flex-alignment;
+    margin-right: 15px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: $control-buttons-size;
+    p {
+      @include flex-alignment;
+      width: $control-buttons-size;
+    }
+    .random-icon {
+      width: 100%;
+      filter: invert(1);
+      opacity: 0.5;
+      transition: opacity $animation-duration, width 0.2s;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+      &:active {
+        width: $control-buttons-size - 5px;
+      }
+    }
+  }
+}
+
+.add-thing-button {
+  @include flex-alignment;
+  position: absolute;
+  width: $add-button-size;
+  height: $add-button-size;
+  bottom: 15px;
+  right: 40px;
+  margin-bottom: -37px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  .add-icon {
+    width: $add-button-size;
+    cursor: pointer;
+    transition: box-shadow $animation-duration, width 0.2s;
+    border-radius: 50%;
+    box-shadow: $add-icon-shadow;
+    &:hover {
+      box-shadow: $add-icon-shadow-hover, 
+                  $add-icon-shadow-hover;
+    }
+    &:active {
+      width: $add-button-size - 5px;
+    }
+  }
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  @include flex-alignment;
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  left: -15px;
+  bottom: calc(100% + 10px);
+  padding: 5px 10px;
+  background-color: black;
+  border-radius: 20px;
+  font-size: 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 1s 1.3s;
+  pointer-events: none;
+}
+.no-touch [data-tooltip]:hover::after {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .control-buttons {
+    height: $control-buttons-small-size;
+    bottom: 15px;
+  }
+  .header { 
+    height: 190px;
+    h2 {
+      font-size: 3rem;
+      line-height: 45px;
+    }
+    .things-counter {
+      font-size: 0.7rem;
+      margin-left: 9px;
+    }
+    .add-thing-button {
+      right: 30px;
+    }
+  }
+  .random-button {
+    margin-right: 10px !important;
+    width: $control-buttons-small-size !important;
+    .rubber-icon,
+    .random-icon {
+      &:active {
+        width: $control-buttons-small-size - 3px !important;
+      }
+    }
+  }
+  .add-icon {
+    width: 50px !important;
+    &:active {
+      width: 50px - 5px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .control-buttons {
+    bottom: 12px;
+  }
+  .header {
+    height: 170px;
+    padding-top: 15px;
+    padding-left: 25px;
+    h2 {
+      font-size: 2.5rem;
+      line-height: 40px;
+    }
+    .things-counter {
+      font-size: 0.6rem;
+      margin-left: 8px;
+    }
+    .add-thing-button {
+      right: 20px;
+    }
+  }
+  .add-icon {
+    width: 45px !important;
+    &:active {
+      width: 45px - 5px !important;
+    }
+  }
+  [data-tooltip]::after {
+    font-size: 13px;
+  }
+}

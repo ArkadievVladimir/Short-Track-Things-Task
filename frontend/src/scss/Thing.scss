@@ -1,0 +1,86 @@
+@import './common/color.scss';
+@import './common/variable.scss';
+
+.Thing {
+  display: flex;
+  position: relative;
+  font-size: 12px;
+  margin-bottom: 25px;
+  border-radius: 20px;
+  background-color: $thing-background-color;
+  border: 2px solid $thing-background-color;
+  transition: .5s;
+  &__name {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    color: $thing-text-color;
+    font-weight: bold;
+    font-size: 20px;
+    word-break: break-word;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    user-select: none;
+  }
+  &__name::-webkit-input-placeholder { 
+    color: $scroll-color;
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    
+    .edit-button,
+    .delete-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 23px;
+      width: 23px;
+      margin-right: 10px;
+      outline: none;
+      background-color: transparent;
+      border: none;
+      p {
+        height: 23px;
+      }
+    }
+    .edit-icon,
+    .delete-icon {
+      height: 100%;
+      filter: grayscale(1);
+      opacity: 0.3;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        opacity: 1;
+        filter: grayscale(0);
+      }
+      &:active {
+        height: 23px - 5px;
+      }
+    }
+    .edit-icon {
+      opacity: 0.8;
+    }
+  }
+  &_timeStamp {
+    position: absolute;
+    color: $thing-text-color-pale;
+    bottom: -19px;
+    right: 19px;
+  }
+}
+
+.thing_edit-mod {
+  background-color: $input-background-edit-mod-color;
+  border: $input-border-edit-mod;
+  .edit-icon,
+  .delete-icon {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+}

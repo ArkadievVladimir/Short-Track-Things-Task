@@ -1,0 +1,13 @@
+@import './common/color.scss';
+
+.app {
+  width: 80vw;
+  height: 90vh;
+  max-width: 600px;
+}
+
+@media screen and (max-width: 400px) {
+  .app {
+    width: 90vw;
+  }
+}
